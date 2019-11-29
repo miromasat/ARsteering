@@ -48,5 +48,55 @@ Furthermore, we can change a scene and have little fun. There are many ways how 
 * Changing the `accent color` (orange by default) on the steering wheel. This can be done by drilling into `SteeringWheel` entity collection > `Wheel` entity collection > `WheelSides` entity. After clicking `WheelSides` entity, we can click on `Material` component on the right and under `COLOR (DIFFUSE)`, we can set a different color using a colorpicker. (we should see this change immediatelly)
 * Changing the `highlight color` (red by default) of the guide/manual. This can be done by clicking on `SteeringWheel` entity collection, then we click on `State Machine` component and under `PerformCommand` state machine editing option, we locate `Perform Commands` Script. This script has a `Highlight Color` parameter, that is again a colorpicker. (to realize this change, we need to play the scene and invoke a command via button or voice)
 ## Step 4 (adding another commands)
-
+As mentioned in Step 3, we can be adding other commands too. There is two simple ideas (and a cheatsheet section at the end) that can be implemented:
+* Alexa button functionality, which can be invoked from the small button on the bottom of the steering wheel.
+* Start/Stop button functionality, which enables keyless starting on/off the engine. The button is located on the center right side of the steering wheel.
+To create a new command, head to `Amazon DynamoDB` console in `us-east-1` region and locate `ARsteering` table. In `Items` tab of this table, you will see how gearshift function is implemented. You will create two new items in this table:
+* name: "`Invoking alexa`" operation: "`alexa`"
+* name: "`Starting/Stopping your vehicle`" operation: "`startstop`"
+Each of these needs to manipulate right (set of) entity in the SteeringWheel entity collection, so look at what are entity names for Alexa button, or Start/Stop button.
 ## Step 5 (deployment options)
+When we are done with edits, and functionality, we can publish our scene with one click. Navigate to `Publish` menu in right top corner of the editor and click `Create public link`. This link will then be shareable with your anyone with a web-browser, as well as can be embedded into mobile applications supporting [ARkit](https://docs.sumerian.amazonaws.com/tutorials/create/intermediate/augmented-reality-using-sumerian-arkit/) and/or [ARcore](https://docs.sumerian.amazonaws.com/tutorials/create/intermediate/augmented-reality-using-sumerian-arcore/).
+# Cheatsheet
+### Alexa command
+`
+{
+  "name": "Invoking Alexa",
+  "operation": "alexa",
+  "steps": [
+    {
+      "actions": [
+        "AlexaButton"
+      ],
+      "end": 5,
+      "start": 0
+    }
+  ],
+  "text": "You can invoke Alexa by pressing a button and asking a question, additionally you can just invoke always-on listening engine by saying Alexa"
+}
+`
+### Start/Stop command
+`
+{
+  "name": "Starting/Stopping your vehicle",
+  "operation": "startstop",
+  "steps": 
+  [
+    {
+      "actions": [
+        "StartStopButton"
+      ],
+      "end": 5,
+      "start": 0
+    },
+    {
+      "actions": [
+        "StartStopButton"
+      ],
+      "end": 9,
+      "start": 6.5
+    }
+  ],
+  "text": "You can start the vehicle by pressing and holding the Start ENGINE Stop button, when the ignition is off, the vehicle will start up and when it's running, it will cause engine turning off."
+}
+`
