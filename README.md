@@ -4,6 +4,9 @@ Content for AUT401 - Building AR and AI automotive owner applications with AWS
 ## Abstract
 Augmented reality (AR), AI, and IoT services can be used to jointly create both visual and aural owner applications, such as an interactive owner’s manual. This session is dedicated to selecting and applying the appropriate AWS tools and services to build interactive owner applications for increasing after-market sales, personalization/localization of services, next-generation design, advertising, and media distribution. Developers and UX designers learn how to easily create applications that reinvent the way we interact with our vehicles in both the physical and digital worlds. Please bring your laptop.
 
+## Architecture Diagram
+![Architecture of ARsteering](./arch.png)
+
 ## Step 1 (deploying CloudFormation template)
 Clicking a button below (and following a wizard), deploy `AWS CloudFormation` stack into your account and `us-east-1` region. 
 This stack deploys:
