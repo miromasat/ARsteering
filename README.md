@@ -54,12 +54,14 @@ As mentioned in Step 3, we can be adding other commands too. There is two simple
 To create a new command, head to `Amazon DynamoDB` console in `us-east-1` region and locate `ARsteering` table. In `Items` tab of this table, you will see how gearshift function is implemented. You will create two new items in this table:
 * name: "`Invoking alexa`" operation: "`alexa`"
 * name: "`Starting/Stopping your vehicle`" operation: "`startstop`"
-Each of these needs to manipulate right (set of) entity in the SteeringWheel entity collection, so look at what are entity names for Alexa button, or Start/Stop button.
+Each of these needs to manipulate right (set of) entity(s) in the `SteeringWheel` entity collection, so look at what are entity names for Alexa button, or Start/Stop button.
+
+You will also need to modify Lambda function to recognize these commands. Head over to `AWS Lambda` function, that was deployed at Step 1 called `ARsteering`. This function is deployed in `us-east-1` region.
 ## Step 5 (deployment options)
 When we are done with edits, and functionality, we can publish our scene with one click. Navigate to `Publish` menu in right top corner of the editor and click `Create public link`. This link will then be shareable with your anyone with a web-browser, as well as can be embedded into mobile applications supporting [ARkit](https://docs.sumerian.amazonaws.com/tutorials/create/intermediate/augmented-reality-using-sumerian-arkit/) and/or [ARcore](https://docs.sumerian.amazonaws.com/tutorials/create/intermediate/augmented-reality-using-sumerian-arcore/).
 # Cheatsheet
 ### Alexa command
-`
+```javascript
 {
   "name": "Invoking Alexa",
   "operation": "alexa",
@@ -74,9 +76,9 @@ When we are done with edits, and functionality, we can publish our scene with on
   ],
   "text": "You can invoke Alexa by pressing a button and asking a question, additionally you can just invoke always-on listening engine by saying Alexa"
 }
-`
+```
 ### Start/Stop command
-`
+```javascript
 {
   "name": "Starting/Stopping your vehicle",
   "operation": "startstop",
@@ -99,4 +101,17 @@ When we are done with edits, and functionality, we can publish our scene with on
   ],
   "text": "You can start the vehicle by pressing and holding the Start ENGINE Stop button, when the ignition is off, the vehicle will start up and when it's running, it will cause engine turning off."
 }
-`
+```
+
+### AWS Lambda function changes
+```python
+if action.lower() in ['gear', 'gearshift', 'gear shift']:
+      operation = 'gearshift'
+      name = 'Shifting Gears'
+elif action.lower() in ['alexa', 'assistant']:
+      operation = 'alexa' 
+      name = 'Invoking Alexa'
+elif action.lower() in ['start', 'stop', 'start stop']:
+      operation = 'startstop'
+      name = 'Starting/Stopping your vehicle' 
+```
