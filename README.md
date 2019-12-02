@@ -14,15 +14,15 @@ This stack deploys:
 * `Amazon DynamoDB` table, that will contain manual functions, their steps and descriptions, we want to support. (one initial function for `geatshift`/shifter will be already stored in this table)
 * `AWS Lambda` function (and associated `AWS IAM` role) that helps `Amazon Lex` bot access `Amazon DynamoDB` table
 
-[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=buildkite&templateURL=https://s3.amazonaws.com/my-great-stack.json)
+[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=buildkite&templateURL=https://arsteering.s3.amazonaws.com/ARsteering.yaml)
 
 You can name the stack `arsteering` and you will need to acknowledge that `AWS IAM` resources will be created within this stack deployment. 
 The stack will take approximately 5 minutes to run and provision above resources.
 ## Step 2 (importing AWS Lex bot)
-Download `AWS Lex` [package in .zip format into your computer from here](https://www.google.com). Navigate to `AWS Lex` service in `us-east-1` region, import the zip file that you've downloaded. You will now see `ARsteering` bot in your console. At the bottom of a page of particular intent, link the intent to `AWS Lambda` function called `ARsteering`, that was provisioned by `AWS CloudFormation` in Step 1. Build the bot, test it and publish them under the alias `latest`.
+Download `AWS Lex` [package in .zip format into your computer from here](https://arsteering.s3.amazonaws.com/ARsteering_Bot_LEX.zip). Navigate to `AWS Lex` service in `us-east-1` region, import the zip file that you've downloaded. You will now see `ARsteering` bot in your console. At the bottom of a page of particular intent, link the intent to `AWS Lambda` function called `ARsteering`, that was provisioned by `AWS CloudFormation` in Step 1. Build the bot, test it and publish them under the alias `latest`.
 
 ## Step 3 (importing Amazon Sumerian scene)
-Download `Amazon Sumerian` [scene export in .zip format into your computer from here](https://www.google.com). Navigate to `Amazon Sumerian` service in `us-east-1` region and create a new empty scene and call it `ARsteering`. After the scene loads, delete `Default dynamic lights` entity collection and rename the `Default Camera` entity to the `Old Camera` (this is to avoid having multiple of these entities/collections after we import the .zip). We then drag and drop the downloaded .zip onto the canvas of our `Amazon Sumerian` scene. After the import finishes, multiple entities appear in our scene. We click on `Default Camera` entity and set it as a Main Camera in the component panel.
+Download `Amazon Sumerian` [scene export in .zip format into your computer from here](https://arsteering.s3.amazonaws.com/ARsteering_Bundle_SUMERIAN.zip). Navigate to `Amazon Sumerian` service in `us-east-1` region and create a new empty scene and call it `ARsteering`. After the scene loads, delete `Default dynamic lights` entity collection and rename the `Default Camera` entity to the `Old Camera` (this is to avoid having multiple of these entities/collections after we import the .zip). We then drag and drop the downloaded .zip onto the canvas of our `Amazon Sumerian` scene. After the import finishes, multiple entities appear in our scene. We click on `Default Camera` entity and set it as a Main Camera in the component panel.
 ### Explore the scene and entity collections
 Get use to Sumerian interface, understand:
 * panel of entities (where our steering wheel model, HTML UI, cameras and light sources live)
