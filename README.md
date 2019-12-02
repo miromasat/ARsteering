@@ -11,7 +11,7 @@ Augmented reality (AR), AI, and IoT services can be used to jointly create both 
 Clicking a button below (and following a wizard), deploy `AWS CloudFormation` stack into your account and `us-east-1` region. 
 This stack deploys:
 * `Amazon Cognito` identity pool (and associated `AWS IAM` role), that allows `Amazon Sumerian` scene to talk to other services
-* `Amazon DynamoDB` table, that will contain manual functions, their steps and descriptions, we want to support. (one initial function for `geatshift`/shifter will be already stored in this table)
+* `Amazon DynamoDB` table, that will contain manual functions, their steps and descriptions, we want to support. (one initial function for `gearshift`/shifter will be already stored in this table)
 * `AWS Lambda` function (and associated `AWS IAM` role) that helps `Amazon Lex` bot access `Amazon DynamoDB` table
 
 [![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=buildkite&templateURL=https://arsteering.s3.amazonaws.com/ARsteering.yaml)
